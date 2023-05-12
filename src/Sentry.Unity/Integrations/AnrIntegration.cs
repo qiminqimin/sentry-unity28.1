@@ -44,7 +44,7 @@ namespace Sentry.Unity
         }
     }
 
-    internal abstract class AnrWatchDog
+    public abstract class AnrWatchDog
     {
         protected readonly int DetectionTimeoutMs;
         // Note: we don't sleep for the whole detection timeout or we wouldn't capture if the ANR started later.
@@ -52,7 +52,7 @@ namespace Sentry.Unity
         protected readonly IDiagnosticLogger? Logger;
         protected readonly SentryMonoBehaviour MonoBehaviour;
         internal event EventHandler<ApplicationNotResponding> OnApplicationNotResponding = delegate { };
-        protected bool Paused { get; private set; } = false;
+        public static bool Paused { get;  set; } = false;
 
         internal AnrWatchDog(IDiagnosticLogger? logger, SentryMonoBehaviour monoBehaviour, TimeSpan detectionTimeout)
         {
